@@ -2,14 +2,52 @@
 import { useState } from 'react'
 import './App.css'
 
+
 const productos = [
-  { id: 1, nombre: 'Hamburguesa clásica', categoria: 'Comida', precio: 18000, emoji: '🍔' },
-  { id: 2, nombre: 'Pizza personal', categoria: 'Comida', precio: 16000, emoji: '🍕' },
-  { id: 3, nombre: 'Papas fritas', categoria: 'Snacks', precio: 8000, emoji: '🍟' },
-  { id: 4, nombre: 'Gaseosa', categoria: 'Bebidas', precio: 5000, emoji: '🥤' },
-  { id: 5, nombre: 'Torta de chocolate', categoria: 'Postres', precio: 9000, emoji: '🍰' },
-  { id: 6, nombre: 'Gomitas', categoria: 'Snacks', precio: 4000, emoji: '🍬' },
+  {
+    id: 1,
+    nombre: 'Hamburguesa clásica',
+    categoria: 'Comida',
+    precio: 18000,
+    imagen: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 2,
+    nombre: 'Pizza personal',
+    categoria: 'Comida',
+    precio: 16000,
+    imagen: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 3,
+    nombre: 'Papas fritas',
+    categoria: 'Snacks',
+    precio: 8000,
+    imagen: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 4,
+    nombre: 'Gaseosa',
+    categoria: 'Bebidas',
+    precio: 5000,
+    imagen: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 5,
+    nombre: 'Torta de chocolate',
+    categoria: 'Postres',
+    precio: 9000,
+    imagen: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 6,
+    nombre: 'Gomitas',
+    categoria: 'Snacks',
+    precio: 4000,
+    imagen: 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&w=800&q=80'
+  }
 ]
+
 
 function App() {
   const [pantalla, setPantalla] = useState('login')
@@ -161,7 +199,11 @@ function App() {
         <div className="lista-restaurantes">
           {productosFiltrados.map(producto => (
             <article className="tarjeta-restaurante" key={producto.id}>
-              <div className="imagen-producto">{producto.emoji}</div>
+            <img
+  className="imagen-producto"
+  src={producto.imagen}
+  alt={producto.nombre}
+/>
               <div className="info-restaurante">
                 <h3>{producto.nombre}</h3>
                 <p>${producto.precio.toLocaleString('es-CO')}</p>
