@@ -1,16 +1,52 @@
-# React + Vite
+# 💜 Rappi Ditto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Todo lo que buscas, en un solo lugar.
 
-Currently, two official plugins are available:
+## ¿Qué es Rappi Ditto?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Rappi Ditto es un proyecto de plataforma web que busca conectar restaurantes y establecimientos comerciales con clientes, facilitando la búsqueda de productos y la solicitud de domicilios desde un mismo lugar.
 
-## React Compiler
+Su propósito es hacer que encontrar y solicitar productos sea una experiencia sencilla, práctica y organizada.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🎯 Objetivo
 
-## Expanding the ESLint configuration
+Facilitar la conexión entre establecimientos y consumidores mediante una plataforma digital que permita explorar productos y realizar pedidos de manera sencilla.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Funcionalidades
+
+- Registro e inicio de sesión.
+- Acceso como invitado.
+- Catálogo de productos.
+- Exploración por categorías.
+- Buscador de productos.
+- Carrito de compras.
+- Modificación de cantidades.
+- Cálculo automático del total.
+- Confirmación y resumen de pedidos.
+- Diseño adaptable a dispositivos móviles.
+
+## 🛠️ Tecnologías utilizadas
+
+- React
+- JavaScript
+- CSS
+- Vite
+
+## 🛍️ Categorías
+
+- Comida
+- Bebidas
+- Snacks
+- Postres
+
+## 📱 Diseño
+
+Rappi Ditto cuenta con una interfaz visual juvenil, organizada y adaptable a diferentes tamaños de pantalla, buscando ofrecer una navegación cómoda para los usuarios.
+
+## 🚀 Estado del proyecto
+
+Actualmente, Rappi Ditto cuenta con un prototipo funcional de su experiencia de navegación, catálogo y solicitud de pedidos. Algunas funcionalidades de gestión y conexión con establecimientos se encuentran pendientes de desarrollo.
+
+---
+
+**Rappi Ditto | Conectando establecimientos con clientes.** 💜
