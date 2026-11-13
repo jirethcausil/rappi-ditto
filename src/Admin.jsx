@@ -15,7 +15,9 @@ function Admin() {
     try {
       const respuesta = await fetch("http://localhost:3001/admin/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({ usuario, password })
       });
 
@@ -31,25 +33,26 @@ function Admin() {
 
       setPedidos(await resPedidos.json());
       setSolicitudes(await resSolicitudes.json());
+
     } catch {
       setError("Usuario o contraseña incorrectos.");
     }
   };
 
   return (
-    <section style={{ padding: "35px 20px", background: "#f5efff" }}>
+    <section className="admin-panel">
+
       {!acceso ? (
-        <form onSubmit={iniciarSesion} style={{
-          maxWidth: "350px", margin: "auto", padding: "25px",
-          background: "white", borderRadius: "18px"
-        }}>
+        <form onSubmit={iniciarSesion}>
+
           <h2>Panel administrativo</h2>
-          <p>Inicia sesión para gestionar Rappi Ditto.</p>
+          <p>Gestiona Rappi Ditto desde aquí.</p>
 
           <input
+            type="text"
             placeholder="Usuario"
             value={usuario}
-            onChange={e => setUsuario(e.target.value)}
+            onChange={(e) => setUsuario(e.target.value)}
             required
           />
 
@@ -57,39 +60,57 @@ function Admin() {
             type="password"
             placeholder="Contraseña"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
 
-          <button type="submit">Iniciar sesión</button>
+          <button type="submit">
+            Iniciar sesión
+          </button>
+
           <p>{error}</p>
+
         </form>
       ) : (
+
         <div>
           <h2>¡Bienvenida a la administración!</h2>
+          <p>Panel de gestión de Rappi Ditto</p>
 
-          <h3>Pedidos recibidos ({pedidos.length})</h3>
-          {pedidos.map(p => (
-            <p key={p.id}>Pedido #{p.id}</p>
-          ))}
+          <h3>📦 Pedidos recibidos ({pedidos.length})</h3>
 
-          <h3>Solicitudes de contacto ({solicitudes.length})</h3>
-          {solicitudes.map(s => (
-            <article key={s.id} style={{
-              background: "white", padding: "15px",
-              borderRadius: "12px", marginBottom: "10px"
-            }}>
-              <strong>{s.nombre}</strong>
-              <p>{s.correo}</p>
-              <p>{s.mensaje}</p>
-            </article>
-          ))}
+          {pedidos.length === 0 ? (
+            <p>No hay pedidos registrados.</p>
+          ) : (
+            pedidos.map((p) => (
+              <article key={p.id}>
+                <strong>Pedido #{p.id}</strong>
+                <p>{p.nombre || "Cliente"}</p>
+              </article>
+            ))
+          )}
+
+          <h3>📩 Solicitudes de contacto ({solicitudes.length})</h3>
+
+          {solicitudes.length === 0 ? (
+            <p>No hay solicitudes registradas.</p>
+          ) : (
+            solicitudes.map((s) => (
+              <article key={s.id}>
+                <strong>{s.nombre}</strong>
+                <p>{s.correo}</p>
+                <p>{s.mensaje}</p>
+              </article>
+            ))
+          )}
 
           <button onClick={() => setAcceso(false)}>
             Cerrar sesión
           </button>
+
         </div>
       )}
+
     </section>
   );
 }

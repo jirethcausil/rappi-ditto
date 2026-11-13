@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import Recomendador from "./Recomendador";
 import './App.css'
 import Contacto from './Contacto'
 import Admin from "./Admin";
@@ -378,7 +379,7 @@ function App() {
           </>
         )}
       </section>
-
+<Recomendador productos={productos} />
       <Contacto />
       <Admin />
     
