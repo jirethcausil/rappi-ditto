@@ -1,5 +1,4 @@
 
-
 import { useState } from 'react'
 import './App.css'
 
@@ -45,6 +44,48 @@ const productos = [
     categoria: 'Snacks',
     precio: 4000,
     imagen: 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+     id: 7,
+    nombre: 'Perro caliente',
+    categoria: 'Comida',
+    precio: 12000,
+   imagen: 'https://images.unsplash.com/photo-1683882330145-d23cbe4f7ccd?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 8,
+    nombre: 'Sándwich especial',
+    categoria: 'Comida',
+    precio: 14000,
+    imagen: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 9,
+    nombre: 'Nuggets de pollo',
+    categoria: 'Snacks',
+    precio: 11000,
+    imagen: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 10,
+    nombre: 'Limonada',
+    categoria: 'Bebidas',
+    precio: 6000,
+   imagen: 'https://images.unsplash.com/photo-1656936637945-571e3f0893f9?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 11,
+    nombre: 'Brownie',
+    categoria: 'Postres',
+    precio: 7000,
+    imagen: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 12,
+    nombre: 'Dona de chocolate',
+    categoria: 'Postres',
+    precio: 6500,
+    imagen: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80'
   }
 ]
 
@@ -251,6 +292,9 @@ function App() {
 
       <section className="restaurantes">
         <h2>Nuestros productos</h2>
+        <p className="subtitulo">
+          Encuentra tus favoritos en nuestros establecimientos.
+        </p>
 
         <div className="lista-restaurantes">
           {productosFiltrados.map(producto => (
