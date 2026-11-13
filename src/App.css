@@ -294,3 +294,78 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* FORMULARIO DE INICIO DE SESIÓN */
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.formulario input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #ded3f2;
+  border-radius: 12px;
+  background: white;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.formulario input:focus {
+  border-color: #8064b5;
+  box-shadow: 0 0 0 3px #8064b522;
+}
+
+.formulario button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #8064b5;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.formulario button:hover {
+  background: #6c519f;
+}
+
+.enlace {
+  border: none;
+  background: transparent;
+  color: #8064b5;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.invitado {
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  border: 2px solid #8064b5;
+  border-radius: 12px;
+  background: transparent;
+  color: #8064b5;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.invitado:hover {
+  background: #e9e0fa;
+}
+
+@media (max-width: 480px) {
+  .bienvenida {
+    padding: 25px 20px;
+  }
+
+  .bienvenida h2 {
+    font-size: 24px;
+  }
+}
