@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import RegistroNegocio from "./RegistroNegocio";
 import Recomendador from "./Recomendador";
 import './App.css'
 import Contacto from './Contacto'
@@ -380,6 +381,7 @@ function App() {
         )}
       </section>
 <Recomendador productos={productos} />
+<RegistroNegocio />
       <Contacto />
       <Admin />
     
