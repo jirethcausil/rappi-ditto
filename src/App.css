@@ -369,3 +369,116 @@ body {
     font-size: 24px;
   }
 }
+
+.confirmacion-pedido {
+  width: 90%;
+  max-width: 550px;
+  margin: 35px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+.icono-confirmacion {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #dff5df;
+  color: #319b50;
+  font-size: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmacion-pedido h2 {
+  margin-bottom: 12px;
+}
+
+.numero-pedido {
+  background: #f5efff;
+  padding: 15px;
+  border-radius: 12px;
+  margin: 25px 0;
+}
+
+.numero-pedido span,
+.total-confirmacion span {
+  display: block;
+  font-size: 14px;
+  color: #666;
+}
+
+.numero-pedido h3 {
+  font-size: 25px;
+  margin: 8px 0 0;
+}
+
+.resumen-productos {
+  margin: 20px 0;
+}
+
+.producto-resumen {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.producto-resumen span {
+  font-size: 14px;
+}
+
+.producto-resumen strong {
+  white-space: nowrap;
+}
+
+.total-confirmacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-top: 2px solid #eee;
+  font-size: 18px;
+}
+
+.total-confirmacion strong {
+  font-size: 21px;
+}
+
+.mensaje-final {
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+.volver-catalogo {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #e8d8ff;
+  color: #38245c;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.volver-catalogo:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 480px) {
+  .confirmacion-pedido {
+    width: 92%;
+    padding: 20px;
+  }
+
+  .producto-resumen {
+    font-size: 13px;
+  }
+}
