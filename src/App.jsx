@@ -1,6 +1,8 @@
 
 import { useState } from 'react'
 import './App.css'
+import Contacto from './Contacto'
+import Admin from "./Admin";
 
 const productos = [
   { id: 1, nombre: 'Hamburguesa clásica', categoria: 'Comida', precio: 18000, imagen: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80' },
@@ -29,7 +31,6 @@ function App() {
 
   function entrar(e) {
     e.preventDefault()
-
     if (correo.trim() && contrasena.trim()) {
       setPantalla('catalogo')
     }
@@ -73,16 +74,31 @@ function App() {
     )
   }
 
-  function confirmarPedido() {
+  async function confirmarPedido() {
     if (carrito.length === 0) return
 
     const nuevoPedido = {
       numero: Date.now().toString().slice(-6),
+      nombre,
+      correo,
       productos: [...carrito],
       total: carrito.reduce(
         (suma, item) => suma + item.precio * item.cantidad,
         0
       )
+    }
+
+    try {
+      const respuesta = await fetch('http://localhost:3001/pedidos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(nuevoPedido)
+      })
+
+      if (!respuesta.ok) throw new Error()
+    } catch (error) {
+      alert('No se pudo conectar con el servidor. Revisa que esté encendido.')
+      return
     }
 
     setPedido(nuevoPedido)
@@ -108,7 +124,6 @@ function App() {
     0
   )
 
-  // PANTALLA DE CONFIRMACION
   if (pantalla === 'confirmacion' && pedido) {
     return (
       <main className="inicio">
@@ -119,7 +134,6 @@ function App() {
 
         <section className="confirmacion-pedido">
           <div className="icono-confirmacion">✓</div>
-
           <h2>¡Pedido recibido!</h2>
 
           <p>
@@ -170,7 +184,6 @@ function App() {
     )
   }
 
-  // LOGIN Y REGISTRO
   if (pantalla !== 'catalogo') {
     return (
       <main className="inicio">
@@ -216,29 +229,20 @@ function App() {
             />
 
             <button type="submit">
-              {pantalla === 'registro'
-                ? 'Crear cuenta'
-                : 'Iniciar sesión'}
+              {pantalla === 'registro' ? 'Crear cuenta' : 'Iniciar sesión'}
             </button>
           </form>
 
           <p>
-            {pantalla === 'login'
-              ? '¿No tienes cuenta?'
-              : '¿Ya tienes cuenta?'}
+            {pantalla === 'login' ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?'}
             {' '}
-
             <button
               className="enlace"
               onClick={() =>
-                setPantalla(
-                  pantalla === 'login' ? 'registro' : 'login'
-                )
+                setPantalla(pantalla === 'login' ? 'registro' : 'login')
               }
             >
-              {pantalla === 'login'
-                ? 'Regístrate'
-                : 'Inicia sesión'}
+              {pantalla === 'login' ? 'Regístrate' : 'Inicia sesión'}
             </button>
           </p>
 
@@ -253,7 +257,6 @@ function App() {
     )
   }
 
-  // CATALOGO Y CARRITO
   return (
     <main className="inicio">
       <header className="encabezado">
@@ -267,8 +270,7 @@ function App() {
 
       <section className="bienvenida">
         <h2>
-          ¡Hola{nombre ? `, ${nombre}` : ''}!
-          {' '}¿Qué se te antoja hoy?
+          ¡Hola{nombre ? `, ${nombre}` : ''}! ¿Qué se te antoja hoy?
         </h2>
 
         <p>Encuentra comida, bebidas, snacks y mucho más.</p>
@@ -288,11 +290,7 @@ function App() {
           {['Todas', 'Comida', 'Bebidas', 'Snacks', 'Postres'].map(item => (
             <button
               key={item}
-              className={
-                categoria === item
-                  ? 'categoria activa'
-                  : 'categoria'
-              }
+              className={categoria === item ? 'categoria activa' : 'categoria'}
               onClick={() => setCategoria(item)}
             >
               {item}
@@ -309,10 +307,7 @@ function App() {
 
         <div className="lista-restaurantes">
           {productosFiltrados.map(producto => (
-            <article
-              className="tarjeta-restaurante"
-              key={producto.id}
-            >
+            <article className="tarjeta-restaurante" key={producto.id}>
               <img
                 className="imagen-producto"
                 src={producto.imagen}
@@ -321,10 +316,7 @@ function App() {
 
               <div className="info-restaurante">
                 <h3>{producto.nombre}</h3>
-
-                <p>
-                  ${producto.precio.toLocaleString('es-CO')}
-                </p>
+                <p>${producto.precio.toLocaleString('es-CO')}</p>
 
                 <button onClick={() => agregar(producto)}>
                   + Agregar al carrito
@@ -378,9 +370,7 @@ function App() {
               </div>
             ))}
 
-            <h3>
-              Total: ${total.toLocaleString('es-CO')}
-            </h3>
+            <h3>Total: ${total.toLocaleString('es-CO')}</h3>
 
             <button onClick={confirmarPedido}>
               Confirmar pedido
@@ -388,6 +378,14 @@ function App() {
           </>
         )}
       </section>
+
+      <Contacto />
+      <Admin />
+    
+
+      <footer>
+        <p>© 2026 Rappi Ditto. Conectando tus antojos.</p>
+      </footer>
     </main>
   )
 }
