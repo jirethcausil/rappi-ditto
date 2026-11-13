@@ -13,7 +13,7 @@ function Admin() {
     e.preventDefault();
 
     try {
-      const respuesta = await fetch("http://localhost:3001/admin/login", {
+      const respuesta = await fetch("https://rappi-ditto.onrender.com/admin/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -27,8 +27,8 @@ function Admin() {
       setError("");
 
       const [resPedidos, resSolicitudes] = await Promise.all([
-        fetch("http://localhost:3001/pedidos"),
-        fetch("http://localhost:3001/contacto")
+        fetch("https://rappi-ditto.onrender.com/pedidos"),
+        fetch("https://rappi-ditto.onrender.com/contacto")
       ]);
 
       setPedidos(await resPedidos.json());

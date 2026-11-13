@@ -90,7 +90,7 @@ function App() {
     }
 
     try {
-      const respuesta = await fetch('http://localhost:3001/pedidos', {
+      const respuesta = await fetch('https://rappi-ditto.onrender.com/pedidos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(nuevoPedido)
