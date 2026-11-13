@@ -45,6 +45,8 @@ app.get("/contacto", (req, res) => {
   res.json(solicitudes);
 });
 
-app.listen(3001, () => {
-  console.log("Rappi Ditto funcionando en http://localhost:3001");
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Rappi Ditto funcionando en el puerto ${PORT}`);
 });
