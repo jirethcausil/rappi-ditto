@@ -1,23 +1,29 @@
 
 const express = require("express");
 const cors = require("cors");
-
+require("dotenv").config();
+const mongoose = require("mongoose");
+const Pedido = require("./Pedido");
+const Solicitud = require("./Solicitud");
+const Negocio = require("./Negocio");
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-let pedidos = [];
-let solicitudes = [];
-let negocios = [];
+// Almacenamiento temporal
 
+
+// Acceso de demostración
 const ADMIN_USER = "admin";
 const ADMIN_PASSWORD = "ditto123";
 
+// Ruta principal
 app.get("/", (req, res) => {
   res.send("¡Servidor de Rappi Ditto funcionando!");
 });
 
+// Inicio de sesión administrativo
 app.post("/admin/login", (req, res) => {
   const { usuario, password } = req.body;
 
@@ -34,72 +40,95 @@ app.post("/admin/login", (req, res) => {
   });
 });
 
-app.get("/pedidos", (req, res) => {
-  res.json(pedidos);
+// PEDIDOS
+app.get("/pedidos", async (req, res) => {
+  try {
+    const pedidos = await Pedido.find();
+    res.json(pedidos);
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error al obtener pedidos" });
+  }
 });
 
-app.post("/pedidos", (req, res) => {
-  const nuevoPedido = {
-    id: Date.now(),
-    ...req.body
-  };
-
-  pedidos.push(nuevoPedido);
-  res.status(201).json(nuevoPedido);
+app.post("/pedidos", async (req, res) => {
+  try {
+    const nuevoPedido = await Pedido.create(req.body);
+    res.status(201).json(nuevoPedido);
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error al guardar el pedido" });
+  }
+});
+// CONTACTO
+app.get("/contacto", async (req, res) => {
+  try {
+    const solicitudes = await Solicitud.find();
+    res.json(solicitudes);
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error al obtener solicitudes" });
+  }
 });
 
-app.post("/contacto", (req, res) => {
-  const nuevaSolicitud = {
-    id: Date.now(),
-    ...req.body
-  };
+app.post("/contacto", async (req, res) => {
+  try {
+    const nuevaSolicitud = await Solicitud.create(req.body);
 
-  solicitudes.push(nuevaSolicitud);
-
-  res.status(201).json({
-    mensaje: "Solicitud recibida correctamente",
-    solicitud: nuevaSolicitud
-  });
-});
-
-app.get("/contacto", (req, res) => {
-  res.json(solicitudes);
+    res.status(201).json({
+      mensaje: "Solicitud recibida correctamente",
+      solicitud: nuevaSolicitud
+    });
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error al guardar solicitud" });
+  }
 });
 
 // REGISTRO DE NEGOCIOS
-app.post("/negocios", (req, res) => {
-  const { nombre, encargado, telefono, direccion, tipo } = req.body;
-
-  if (!nombre || !encargado || !telefono || !direccion || !tipo) {
-    return res.status(400).json({
-      mensaje: "Completa todos los campos."
-    });
+app.get("/negocios", async (req, res) => {
+  try {
+    const negocios = await Negocio.find();
+    res.json(negocios);
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error al obtener negocios" });
   }
-
-  const nuevoNegocio = {
-    id: Date.now(),
-    nombre,
-    encargado,
-    telefono,
-    direccion,
-    tipo,
-    estado: "Pendiente"
-  };
-
-  negocios.push(nuevoNegocio);
-
-  res.status(201).json({
-    mensaje: "¡Solicitud de registro recibida!",
-    negocio: nuevoNegocio
-  });
 });
 
-app.get("/negocios", (req, res) => {
-  res.json(negocios);
-});
+app.post("/negocios", async (req, res) => {
+  try {
+    const { nombre, encargado, telefono, direccion, tipo } = req.body;
 
+    if (!nombre || !encargado || !telefono || !direccion || !tipo) {
+      return res.status(400).json({
+        mensaje: "Completa todos los campos."
+      });
+    }
+
+    const nuevoNegocio = await Negocio.create({
+      nombre,
+      encargado,
+      telefono,
+      direccion,
+      tipo,
+      estado: "Pendiente"
+    });
+
+    res.status(201).json({
+      mensaje: "¡Solicitud de registro recibida!",
+      negocio: nuevoNegocio
+    });
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error al guardar negocio" });
+  }
+})
+// INICIAR SERVIDOR
 const PORT = process.env.PORT || 3001;
 
-app.listen(PORT, () => {
-  console.log(`Rappi Ditto funcionando en el puerto ${PORT}`);
-});
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("MongoDB conectado correctamente");
+
+    app.listen(PORT, () => {
+      console.log(`Rappi Ditto funcionando en el puerto ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Error al conectar MongoDB:", error.message);
+  });
