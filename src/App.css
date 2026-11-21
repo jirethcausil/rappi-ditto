@@ -635,3 +635,91 @@ body {
   cursor: pointer;
   font-weight: bold;
 }
+
+/* BOTONES Y CONTROLES DE RAPPI DITTO */
+
+/* Categorías */
+.categoria {
+  border: 2px solid transparent;
+  border-radius: 18px;
+  background: #ffffff;
+  color: #493c61;
+  padding: 22px 15px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.categoria:hover {
+  background: #f0e9ff;
+  border-color: #c9b5ec;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 14px #8064b51c;
+}
+
+.categoria.activa {
+  background: #e9e0fa;
+  border-color: #8064b5;
+  color: #62458f;
+  box-shadow: 0 4px 12px #8064b522;
+}
+
+/* Cerrar sesión */
+.encabezado button {
+  margin-top: 12px;
+  padding: 10px 19px;
+  border: 1px solid #8064b5;
+  border-radius: 12px;
+  background: #8064b5;
+  color: white;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.encabezado button:hover {
+  background: #6c519f;
+  transform: translateY(-2px);
+}
+
+/* Selector de tipo de negocio */
+.contacto select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e6d9fa;
+  border-radius: 12px;
+  background: white;
+  color: #493c61;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.contacto select:focus {
+  border-color: #8064b5;
+  box-shadow: 0 0 0 3px #8064b522;
+}
+
+/* Botones de formularios */
+.contacto button {
+  transition: all 0.25s ease;
+}
+
+.contacto button:hover {
+  background: #a2dcb9;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px #315c4520;
+}
+
+/* Accesibilidad */
+button:focus-visible,
+select:focus-visible {
+  outline: 3px solid #d8c5f5;
+  outline-offset: 3px;
+}

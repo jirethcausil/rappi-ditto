@@ -10,7 +10,7 @@ function Admin() {
   const [negocios, setNegocios] = useState([]);
   const [error, setError] = useState("");
 
-  const API = "https://rappi-ditto.onrender.com";
+  const API = "https://rappi-ditto-backend.onrender.com";
 
   const iniciarSesion = async (e) => {
     e.preventDefault();

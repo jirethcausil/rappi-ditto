@@ -25,7 +25,7 @@ function RegistroNegocio() {
 
     try {
       const respuesta = await fetch(
-        "https://rappi-ditto.onrender.com/negocios",
+        "https://rappi-ditto-backend.onrender.com/negocios",
         {
           method: "POST",
           headers: {

@@ -11,7 +11,7 @@ function Contacto() {
     e.preventDefault();
 
     try {
-      const respuesta = await fetch("https://rappi-ditto.onrender.com/contacto", {
+      const respuesta = await fetch("https://rappi-ditto-backend.onrender.com/contacto", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
